@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>TNT - Townathlon</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/blueimp-gallery.min.css">
+
+  </head>
+  <body>
+    <div id="background" style="background-image: url(https://aswwu.com/media/images/townathlon/TNT%202014%20pictures/TNT%202014%20best%20pix/4.JPG);"></div>
+    <br>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h2><a href="index.html">ASWWU Townathlon (TNT) 2016</a></h2>
+          <hr>
+          <h4>Photo Gallery</h4>
+          <div id="blueimp-gallery" class="blueimp-gallery">
+            <div class="slides"></div>
+            <h3 class="title"></h3>
+            <a class="prev">‹</a>
+            <a class="next">›</a>
+            <a class="close">×</a>
+            <a class="play-pause"></a>
+            <ol class="indicator"></ol>
+          </div>
+        </div>
+
+        <div id="links"></div>
+
+      </div>
+    </div>
+    <br>
+
+    <script src="js/blueimp-gallery.min.js"></script>
+    <script>
+      var bo2015 = ["169.jpg","199.jpg","20151004_145703_resized_1.jpg","DSC_0471.JPG","DSC_0594.JPG","DSC_0615.JPG","DSC_0648.JPG","DSC_0668.JPG","DSC_0725.JPG","DSC_0755.JPG","IMG_0920.JPG","IMG_1020.JPG","IMG_1230.JPG","IMG_1234.JPG","IMG_1426.JPG","IMG_1743.JPG","IMG_1783.JPG"];
+      var bo2014 = ["1.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg","15.jpg","16.jpg","17.JPG","17a.JPG","17b.JPG","18.jpg","19.JPG","2.JPG","20.jpg","21.JPG","22.JPG","23.JPG","23a.JPG","24.JPG","24a.JPG","25.JPG","26.JPG","27.JPG","28.JPG","29.jpg","3.jpg","30.jpg","31.jpg","32.jpg","33.JPG","34.JPG","35.JPG","36.JPG","37.JPG","38.JPG","39.JPG","4.JPG","40.JPG","41.JPG","42.JPG","43.JPG","5.JPG","6.JPG","7.jpg","8.jpg","9.JPG"];
+      function addLink(filename) {
+        var link = "https://aswwu.com/media/img-lg/images/townathlon/"+filename;
+        $('#links').append("<a href='"+link+"'><img src='"+link.replace('img-lg','img-sm')+"' style='height: 5em;'></a>");
+      }
+      $(document).ready(function() {
+        $.getJSON('2015photos.json', function(data) {
+          data.filenames.filter(function(a) { return bo2015.indexOf(a.split('/').pop()) > -1; }).map(addLink);
+        });
+        $.getJSON('2014photos.json', function(data) {
+          data.filenames.filter(function(a) { return bo2014.indexOf(a.split('/').pop()) > -1; }).map(addLink);
+        });
+      });
+      document.getElementById('links').onclick = function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+          link = target.src ? target.parentNode : target,
+          options = {index: link, event: event},
+          links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+      };
+    </script>
+  </body>
+</html>

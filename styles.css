@@ -1,0 +1,22 @@
+body { color: white; background: none; }
+
+a { color: #FFA; }
+a:hover { color: #EEF; }
+hr { border-color: white; }
+h5 { margin-top: 1em; }
+
+#background {
+  z-index: -1;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  background-position: center;
+  background-size: cover;
+  -webkit-filter: saturate(50%) brightness(80%);
+  -moz-filter: saturate(50%) brightness(80%);
+  -o-filter: saturate(50%) brightness(80%);
+  filter: saturate(50%) brightness(80%);
+}
