@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>TNT - Townathlon</title>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css" crossorigin="anonymous">
+    <script src="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="background" style="background-image: url(https://aswwu.com/media/img-lg/images/townathlon/TNT%202015%20pictures/Amy/TNT%202015%20-%20WWGH%20Pictures/DSC_0725.JPG);"></div>
+    <br>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12">
+          <h2><a href="index.html">ASWWU Townathlon (TNT) 2016</a></h2>
+          <hr>
+          <form id="townathlon_form">
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Name (Required)</label>
+              <input name="name" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Email (Required)</label>
+              <input name="email" type="email" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Phone (Required)</label>
+              <input name="phone" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Age on October 2nd, 2016 (Required)</label>
+              <input name="age" type="text" class="form-control">
+              <small class="text-white">If you are under 18 at the time of the run, you <strong>MUST</strong> have your parents physically sign the waiver form <a href="Townathlon_Waiver.pdf">here</a>.</small>
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Address 1</label>
+              <input name="address_1" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-6">
+              <label>Address 2</label>
+              <input name="address_2" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-4">
+              <label>City</label>
+              <input name="city" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-4">
+              <label>State</label>
+              <input name="state" type="text" class="form-control">
+            </fieldset>
+            <fieldset class="form-group col-xs-12 col-md-4">
+              <label>Zipcode</label>
+              <input name="zipcode" type="text" class="form-control">
+            </fieldset>
+            <h4 style="color: red;" id="error"></h4>
+            <br>
+            <h4>By clicking "Submit" below you agree that the information above is correct, have read and agree to fill sign the <a href="Townathlon_Waiver.pdf">waiver</a>, and barring any extreme circumstances (<a href="qna.html">weather doesn't count</a>) will be there with <a href="information.html">cash</a> in hand and ready to run.</h4>
+            <br>
+            <button class="form-control btn btn-success" type="submit">Submit</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+    <br>
+
+    <script>
+      if (window.localStorage.getItem('hasSignedUp') == 'true') {
+        $('#townathlon_form').html("<h2>Thanks for signing up for the ASWWU Townathlon! We'll see you at the race!</h2>");
+      } else {
+        $('#townathlon_form').submit(function(e) {
+          e.preventDefault();
+          $.post("https://aswwu.com/server/townathlon_form", $(this).serializeArray(), function(res) {
+            if (res.error) {
+              return $("#error").text(res.error);
+            } else {
+              $('#townathlon_form').html("<h2>Thanks for signing up for the ASWWU Townathlon! We'll see you at the race!</h2>");
+              window.localStorage.setItem('hasSignedUp', 'true');
+            }
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

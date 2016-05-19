@@ -21,17 +21,29 @@
           <p>To participate and for additional information please choose from the following:</p>
           <ul>
             <li><a href="information.html">ASWWU TNT 2016 General Information</a></li>
-            <li><b>Pay the ASWWU TNT 2016 participation fee</b></li>
+            <li><a href="qna.html">Frequently Asked Questions</a></li>
+            <li><a href="signup.html">Sign Up Here!</a></li>
             <li><a href="gallery.html">View the Gallery of Past Year's Runs</a></li>
-            <li>For additional information please call <a href="tel: asdfdsa">(555) 555-5555</a> or email <a href="mailto: aswwu.globalservice@wallawalla.edu">aswwu.globalservice@wallawalla.edu</a></li>
+            <li><a href="https://aswwu.com/media/images/townathlon/DemoVideo.mp4">Video Montage of the Run</a></li>
+            <li>For additional information please call <a href="tel: (909) 801-1428">(909) 801-1428</a> or email <a href="mailto: aswwu.globalservice@wallawalla.edu">aswwu.globalservice@wallawalla.edu</a></li>
           </ul>
           <br><br>
-          <img class="col-xs-6" src="https://aswwu.com/media/img-lg/images/townathlon/TNT%202015%20pictures/Amy/TNT%202015%20-%20WWGH%20Pictures/DSC_0594.JPG">
-          <img class="col-xs-6" src="https://aswwu.com/media/img-lg/images/townathlon/TNT%202014%20pictures/TNT%202014%20best%20pix/7.jpg">
         </div>
 
       </div>
     </div>
     <br>
+
+    <script>
+      $(document).ready(function () {
+        if (document.body.scrollWidth < 600) return;
+        $("#background").append('<video src="https://aswwu.com/media/images/townathlon/DemoVideo.mp4" style="display: none; min-height: 100%; min-width: 100%;" autoplay muted></video>');
+        $("#background > video").on("play", function() {
+          $(this).css('display', 'block');
+        }).on("ended", function() {
+          $(this).css('display', 'none');
+        });
+      });
+    </script>
   </body>
 </html>

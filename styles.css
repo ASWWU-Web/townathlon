@@ -15,8 +15,24 @@ h5 { margin-top: 1em; }
   display: block;
   background-position: center;
   background-size: cover;
+  overflow: hidden;
   -webkit-filter: saturate(50%) brightness(80%);
   -moz-filter: saturate(50%) brightness(80%);
   -o-filter: saturate(50%) brightness(80%);
   filter: saturate(50%) brightness(80%);
+}
+
+#background > video {
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto;
+}
+
+#townathlon_form {
+  background-color: rgba(0,0,0,0.75);
+  border-radius: 0.5em;
+  padding: 1em;
 }
